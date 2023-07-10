@@ -1,0 +1,63 @@
+<form [formGroup]="userModel">
+    <div class="col-4 mb-3">
+        <label for="nombre" class="form-label">Nombre:</label>
+        <input 
+        formControlName="nombre"
+        type="text" 
+        class="form-control" 
+        id="nombre" 
+        [class.is-invalid]="nombreControl.invalid && nombreControl.touched"
+        >
+        <div *ngIf="nombreControl.invalid && nombreControl.hasError('required')" id="nombrerequeridoFeedback" class="invalid-feedback">
+          El campo nombre es obligatorio.
+        </div>
+        <div *ngIf="nombreControl.invalid && nombreControl.hasError('minlength')" id="nombreminlengthFeedback" class="invalid-feedback">
+          El campo nombre debe tener al menos {{nombreControl.errors?.['minlength'].requiredLength}} caracteres.
+        </div>
+    </div>
+    <div class="col-4 mb-3">
+        <label for="apellido" class="form-label">Apellido:</label>
+        <input 
+        formControlName="apellido"
+        type="text" 
+        class="form-control" 
+        id="apellido"
+        [class.is-invalid]="apellidoControl.invalid && apellidoControl.touched"
+        >
+        <div *ngIf="apellidoControl.invalid && apellidoControl.hasError('required')" id="apellidorequeridoFeedback" class="invalid-feedback">
+          El campo apellido es obligatorio.
+        </div>
+        <div *ngIf="apellidoControl.invalid && apellidoControl.hasError('minlength')" id="apellidominlengthFeedback" class="invalid-feedback">
+          El campo apellido debe tener al menos {{apellidoControl.errors?.['minlength'].requiredLength}} caracteres.
+        </div>
+       
+    </div>
+    <div class="col-4 mb-3">
+        <label for="email" class="form-label">Email:</label>
+        <input 
+        formControlName="email"
+        type="email" 
+        class="form-control" 
+        id="email"
+        [class.is-invalid]="emailControl.invalid"
+        >  
+        <div id="emailFeedback" class="invalid-feedback">
+          El campo email debe ser una dirección de correo válida.
+        </div>
+       
+      <!--  <pre> {{emailControl.errors | json }}</pre> -->
+    </div>
+    <div class="col-4 mb-3">
+      <label for="contrasenia" class="form-label">Password:</label>
+      <input 
+      formControlName="contrasenia"
+      type="password" 
+      class="form-control" 
+      id="contrasenia">
+    </div>
+   
+    <button type="submit" class="btn btn-primary">Aceptar</button>
+  </form>
+<!--  <div>
+    <pre>{{ userModel.value | json  }}</pre>
+  </div> -->
